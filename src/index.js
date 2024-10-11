@@ -23,21 +23,21 @@ app.post('/cadastro', async (req, res) => {
     const senha = req.body.senha;
 
     if (!nome) {
-        return res.status(400).send(JSON.stringify({ Mensagem: "Por favor, informe o nome." }));
+        return res.status(400).send(JSON.stringify({ Mensagem: "Por favor, forneça o nome." }));
     }
 
     if (!email) {
-        return res.status(400).send(JSON.stringify({ Mensagem: "Por favor, informe o email." }));
+        return res.status(400).send(JSON.stringify({ Mensagem: "Por favor, forneça o email." }));
     }
 
     let buscaEmail = usuarios.find(usuario => usuario.email === email);
 
     if (buscaEmail) {
-        return res.status(400).send(JSON.stringify({ Mensagem: "Email já cadastrado, tente outro." }));
+        return res.status(400).send(JSON.stringify({ Mensagem: "Email já registrado, tente outro." }));
     }
 
     if (!senha) {
-        return res.status(400).send(JSON.stringify({ Mensagem: "Senha inválida. Favor inserir." }));
+        return res.status(400).send(JSON.stringify({ Mensagem: "Senha inválida. Por favor, insira uma." }));
     }
 
     if (nome && email && senha) {
@@ -79,7 +79,7 @@ app.post('/login', async (req, res) => {
         let senhaCorreta = await bcrypt.compare(senha, buscaEmail.senha);
 
         if (senhaCorreta) {
-            res.status(200).send(JSON.stringify({ Mensagem: `Seja bem-vindo, ${buscaEmail.nome}! Login realizado com sucesso!` }));
+            res.status(200).send(JSON.stringify({ Mensagem: `Seja bem-vindo, ${buscaEmail.nome}! Login efetuado com sucesso!` }));
         } else {
             res.status(400).send(JSON.stringify({ Mensagem: "Credenciais inválidas. Verifique os dados." }));
         }
@@ -92,7 +92,7 @@ app.post('/mensagem/:email', (req, res) => {
     const email = req.params.email;
 
     if (!email) {
-        return res.status(400).send(JSON.stringify({ Mensagem: "Por favor, informe um email válido." }));
+        return res.status(400).send(JSON.stringify({ Mensagem: "Por favor, forneça um email válido." }));
     }
 
     let buscaEmail = usuarios.find(usuario => usuario.email === email);
@@ -102,11 +102,11 @@ app.post('/mensagem/:email', (req, res) => {
     }
 
     if (!titulo) {
-        return res.status(400).send(JSON.stringify({ Mensagem: "Por favor, informe um título válido." }));
+        return res.status(400).send(JSON.stringify({ Mensagem: "Por favor, forneça um título válido." }));
     }
 
     if (!descricao) {
-        return res.status(400).send(JSON.stringify({ Mensagem: "Por favor, informe uma descrição válida." }));
+        return res.status(400).send(JSON.stringify({ Mensagem: "Por favor, forneça uma descrição válida." }));
     }
 
     if (titulo && descricao) {
@@ -127,7 +127,7 @@ app.get('/mensagem/:email', (req, res) => {
     const email = req.params.email;
 
     if (!email) {
-        return res.status(400).send(JSON.stringify({ Mensagem: "Por favor, informe um email válido." }));
+        return res.status(400).send(JSON.stringify({ Mensagem: "Por favor, forneça um email válido." }));
     }
 
     let buscaEmail = usuarios.find(usuario => usuario.email === email);
@@ -137,14 +137,14 @@ app.get('/mensagem/:email', (req, res) => {
     }
 
     if (mensagens.length === 0) {
-        return res.status(400).send(JSON.stringify({ Mensagem: "Não há mensagens cadastradas. Por favor, crie uma mensagem." }));
+        return res.status(400).send(JSON.stringify({ Mensagem: "Não há mensagens registradas. Por favor, crie uma mensagem." }));
     }
 
     const listaMensagens = mensagens.map(mensagem => {
         return `ID: ${mensagem.id} - Título: ${mensagem.titulo} - Descrição: ${mensagem.descricao}`;
     });
 
-    res.status(200).send(JSON.stringify({ Mensagem: `Seja bem-vindo! As mensagens cadastradas são: ${listaMensagens}` }));
+    res.status(200).send(JSON.stringify({ Mensagem: `Seja bem-vindo! As mensagens registradas são: ${listaMensagens}` }));
 });
 
 app.put('/mensagem/:id', (req, res) => {
@@ -153,7 +153,7 @@ app.put('/mensagem/:id', (req, res) => {
     const descricao = req.body.descricao;
 
     if (!id) {
-        return res.status(400).send(JSON.stringify({ Mensagem: "Por favor, informe um id válido." }));
+        return res.status(400).send(JSON.stringify({ Mensagem: "Por favor, forneça um id válido." }));
     }
 
     const indiceMensagem = mensagens.findIndex(mensagem => mensagem.id === id);
@@ -163,11 +163,11 @@ app.put('/mensagem/:id', (req, res) => {
     }
 
     if (!titulo) {
-        return res.status(400).send(JSON.stringify({ Mensagem: "Por favor, informe um título válido." }));
+        return res.status(400).send(JSON.stringify({ Mensagem: "Por favor, forneça um título válido." }));
     }
 
     if (!descricao) {
-        return res.status(400).send(JSON.stringify({ Mensagem: "Por favor, informe uma descrição válida." }));
+        return res.status(400).send(JSON.stringify({ Mensagem: "Por favor, forneça uma descrição válida." }));
     }
 
     const mensagem = mensagens[indiceMensagem];
@@ -181,7 +181,7 @@ app.delete('/mensagem/:id', (req, res) => {
     const id = Number(req.params.id);
 
     if (!id) {
-        return res.status(400).send(JSON.stringify({ Mensagem: "Por favor, informe um id válido." }));
+        return res.status(400).send(JSON.stringify({ Mensagem: "Por favor, forneça um id válido." }));
     }
 
     const indiceMensagem = mensagens.findIndex(mensagem => mensagem.id === id);
@@ -191,7 +191,7 @@ app.delete('/mensagem/:id', (req, res) => {
     }
 
     mensagens.splice(indiceMensagem, 1);
-    res.status(200).send(JSON.stringify({ Mensagem: "Mensagem deletada com sucesso!" }));
+    res.status(200).send(JSON.stringify({ Mensagem: "Mensagem removida com sucesso!" }));
 });
 
 app.listen(PORT, () => console.log('Servidor rodando na porta 3333.'));
