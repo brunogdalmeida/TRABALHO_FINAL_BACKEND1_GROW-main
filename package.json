@@ -9,15 +9,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/MirandaFayra/TRABALHO_FINAL_BACKEND1_GROW.git"
+    "url": "git+https://github.com/brunogdalmeida/TRABALHO_FINAL_BACKEND1_GROW-main.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/MirandaFayra/TRABALHO_FINAL_BACKEND1_GROW/issues"
+    "url": "https://github.com/brunogdalmeida/TRABALHO_FINAL_BACKEND1_GROW-main/issues"
   },
-  "homepage": "https://github.com/MirandaFayra/TRABALHO_FINAL_BACKEND1_GROW#readme",
+  "homepage": "https://github.com/brunogdalmeida/TRABALHO_FINAL_BACKEND1_GROW-main#readme",
   "devDependencies": {
     "nodemon": "^3.1.0",
     "sucrase": "^3.35.0"
